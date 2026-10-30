@@ -15,6 +15,7 @@ INSTRUCTIONS = (
     "- Dominio sin imports de FastAPI, LangGraph ni httpx; acceso a la API externa solo vía el puerto WalletGateway; URL base por variable de entorno.\n"
     "- La wallet pasa a activa solo al completar el onboarding.\n"
     "Reporta cada punto como CUMPLE, NO CUMPLE o NO VERIFICABLE con evidencia (archivo y fragmento). No inventes endpoints de la API externa.\n"
+    "Cierra con la sección '## Observaciones' con una lista numerada de hallazgos accionables de tu rol (o 'Sin observaciones').\n"
 )
 
 

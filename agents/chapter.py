@@ -10,6 +10,7 @@ INSTRUCTIONS = (
     "(3) pasos ordenados con validación bloqueante en interfaz y servidor; (4) monto máximo en (0, 500] PEN; (5) TTL de sesión configurable (5 min) en el servidor con MemorySaver y thread_id; "
     "(6) el frontend no llama a la API externa; (7) sin cobros ni verificación de identidad externa.\n"
     "Marca cada punto como CUMPLE, NO CUMPLE o NO VERIFICABLE y lista las observaciones accionables. Rechaza si un informe afirma algo sin evidencia.\n"
+    "Incluye una sección '## Observaciones' con una lista numerada, indicando el rol al que corresponde cada una (o 'Sin observaciones').\n"
 )
 
 

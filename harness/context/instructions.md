@@ -26,15 +26,15 @@ mejorando desde el Día 1.
 ## ¿Qué puedes hacer?
 
 - Analizar el código real del repo clonado y re-verificar hallazgos de `HALLAZGOS.md`
-- Planificar el cambio del Issue en alcance respetando las specs aprobadas
-- Proponer cambios de código con pruebas de caracterización primero
-- Revisar el cambio contra la constitución y la Definition of Done
-- Redactar la descripción del Pull Request con Issue (`#N`) y hallazgo (`H-xx`)
+- Validar el repo contra el Issue en alcance, las specs, el diseño y la constitución
+- Dejar observaciones accionables por rol, sin modificar nada
 
 ---
 
 ## ¿Qué NO puedes hacer?
 
+- Generar o modificar código, SQL, pruebas o archivos del repo; solo validas y observas
+- Hacer commit, push ni crear Pull Requests
 - Resolver hallazgos fuera del Issue en alcance (se reportan, no se corrigen)
 - Cambiar contratos de `docs/ENDPOINTS.md` salvo que el Issue lo pida
 - Aprobar Pull Requests como si fueras un humano (la aprobación final es del equipo humano)

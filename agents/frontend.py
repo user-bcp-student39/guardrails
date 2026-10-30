@@ -11,6 +11,7 @@ INSTRUCTIONS = (
     "thread_id (UUID v4) generado en el frontend, enviado en cada invocación y guardado en sessionStorage (no localStorage); "
     "el frontend nunca llama a la API externa, solo al endpoint del backend; aviso claro de expiración y reinicio explícito.\n"
     "Reporta cada punto como CUMPLE, NO CUMPLE o NO VERIFICABLE con evidencia.\n"
+    "Cierra con la sección '## Observaciones' con una lista numerada de hallazgos accionables de tu rol (o 'Sin observaciones').\n"
 )
 
 

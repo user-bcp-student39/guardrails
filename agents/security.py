@@ -11,6 +11,7 @@ INSTRUCTIONS = (
     "el frontend no accede a la API externa; URL y TTL salen de configuración/variables de entorno, sin valores ni secretos hardcodeados; "
     "el monto máximo no supera 500 PEN; el formato del DNI no se presenta como verificación de identidad.\n"
     "Reporta cada punto como CUMPLE, NO CUMPLE o NO VERIFICABLE con evidencia y severidad.\n"
+    "Cierra con la sección '## Observaciones' con una lista numerada de hallazgos accionables de tu rol (o 'Sin observaciones').\n"
 )
 
 

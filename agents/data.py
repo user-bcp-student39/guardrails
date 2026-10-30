@@ -8,6 +8,7 @@ INSTRUCTIONS = (
     "el frontend solo guarda thread_id en sessionStorage (no localStorage); el avance lleva marca de tiempo y TTL de configuración; "
     "el monto máximo se guarda en (0, 500] PEN; un checkpointer persistente está fuera de alcance.\n"
     "Reporta cada punto como CUMPLE, NO CUMPLE o NO VERIFICABLE con evidencia, sin generar SQL.\n"
+    "Cierra con la sección '## Observaciones' con una lista numerada de hallazgos accionables de tu rol (o 'Sin observaciones').\n"
 )
 
 

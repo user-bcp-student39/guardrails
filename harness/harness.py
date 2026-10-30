@@ -76,7 +76,8 @@ _PRODUCT_DOCS = (
     "HALLAZGOS.md",                 # Día 1: hallazgos con Id H-xx
     ".github/skills/reqflow-definition-of-done/SKILL.md",  # Día 3: DoD
 )
-_PRODUCT_GLOBS = ("openspec/specs/**/*.md",)  # Día 3: specs aprobadas
+_PRODUCT_GLOBS = ("openspec/specs/**/*.md", "openspec/changes/**/*.md",
+                  "openspec/changes/**/*.yaml")  # Día 3: specs y diseño del cambio
 _MAX_DOC_CHARS = 4000
 
 

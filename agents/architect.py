@@ -15,6 +15,7 @@ INSTRUCTIONS = (
     "- Fuera de alcance: cobros, proveedores de pago, movimiento de dinero, verificación de identidad externa (RENIEC).\n"
     "Reporta cada punto como CUMPLE, NO CUMPLE o NO VERIFICABLE, con evidencia del Issue o del código. No propongas código ni rediseños; si algo falta, indícalo como incumplimiento.\n"
     "Contrato de la API externa desconocido: márcalo como pendiente, no lo inventes.\n"
+    "Cierra con la sección '## Observaciones' con una lista numerada de hallazgos accionables de tu rol (o 'Sin observaciones').\n"
 )
 
 

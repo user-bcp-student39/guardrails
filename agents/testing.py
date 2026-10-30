@@ -10,6 +10,7 @@ INSTRUCTIONS = (
     "monto máximo en (0, 500] PEN incluidos los límites 0, 500 y 500.01; expiración por TTL y thread_id desconocido tratado como sesión expirada; "
     "activación de la wallet solo al completar el onboarding; dominio probado sin FastAPI/LangGraph/httpx; adaptador WalletGateway con respuestas simuladas.\n"
     "Reporta cada punto como CUBIERTO, NO CUBIERTO o NO EJECUTADO con evidencia; no afirmes resultados que no se ejecutaron.\n"
+    "Cierra con la sección '## Observaciones' con una lista numerada de hallazgos accionables de tu rol (o 'Sin observaciones').\n"
 )
 
 
