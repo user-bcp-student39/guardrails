@@ -597,11 +597,7 @@ def main():
             (OUTPUT_DIR / _fname).write_text(
                 f"# {_titulo} — {GITHUB_REPO}\n\n{_salida}", encoding="utf-8")
 
-            if _nodo_corrido in ("data", "backend", "frontend", "testing"):
-                _n = _extract_files(_salida, repo_dir)
-                print(f"  ✅ output/{_fname} ({_n} archivos extraídos)")
-            else:
-                print(f"  ✅ output/{_fname}")
+            print(f"  ✅ output/{_fname}")
 
             _state[CKPT_FIELD[_nodo_corrido]] = _salida
             if _nodo_corrido == "architect":
@@ -664,76 +660,8 @@ def main():
         print("  ✅ evidence/compliance_report.json")
         _state["compliance_score"] = f"{_passed}/{_total}"
 
-    save_checkpoint(_state, "push")
-    _next_step = "push"
-
-    # ── Paso 5: Git commit + push ─────────────────────────────────────
-    if _next_step == "push":
-        print(f"\n{_step_label()} Preparando commit y push...")
-
-        commit_type = _derive_commit_type(
-            _state.get("plan", ""), _state.get("chapter_out", ""))
-        branch = HEAD_BRANCH or _branch_name(GITHUB_REPO, commit_type,
-                                             _state.get("plan", ""))
-        msg    = _commit_message(commit_type, GITHUB_REPO, _state.get("analysis", ""))
-
-        rounds_done = _state.get("review_round", 1)
-        print(f"[GIT] Tipo de commit    : {commit_type}")
-        print(f"[GIT] Rondas de review  : {rounds_done}")
-        print(f"[GIT] Veredicto final   : {_state.get('last_verdict', '?').upper()}")
-        print(f"[GIT] Rama              : {branch}")
-        print(f"[GIT] Mensaje           : {msg}")
-
-        _state["head_branch"]  = branch
-        _state["base_branch"]  = BASE_BRANCH
-        _state["commit_type"]  = commit_type
-        _state["commit_msg"]   = msg
-
-        _git_branch_push(repo_dir, branch, msg)
-        save_checkpoint(_state, "pr")
-        _next_step = "pr"
-
-    # ── Paso 6: Crear PR ─────────────────────────────────────────────
-    if _next_step in ("push", "pr"):
-        _head = _state.get("head_branch", "")
-        _base = _state.get("base_branch", BASE_BRANCH)
-        _msg  = _state.get("commit_msg", "Refactorización guardrails")
-        _type = _state.get("commit_type", "refactor")
-        _rnds = _state.get("review_round", 1)
-        _verd = _state.get("last_verdict", "aprobado").upper()
-
-        if not _head:
-            print("  ⚠️  No se encontró el branch en el checkpoint — no se puede crear el PR.")
-        else:
-            print(f"\n[gh] Creando Pull Request...")
-            pr_title = f"{_type}({GITHUB_REPO[:20]}): guardrails refactoring"
-            pr_body  = (
-                f"## Guardrails Refactoring — {GITHUB_REPO}\n\n"
-                f"**Tipo:** {_type}  \n"
-                f"**Commit:** {_msg}  \n"
-                f"**Rondas de review:** {_rnds}  \n"
-                f"**Veredicto final:** {_verd}\n\n"
-                f"### Análisis\n{_ctx(_state.get('analysis', ''), 500)}\n\n"
-                f"### Plan\n{_ctx(_state.get('plan', ''), 500)}\n\n"
-                f"### Datos y persistencia\n{_ctx(_state.get('data_out', ''), 600)}\n\n"
-                f"### Pruebas\n{_ctx(_state.get('testing_out', ''), 600)}\n\n"
-                f"### Seguridad\n{_ctx(_state.get('security_out', ''), 600)}\n\n"
-                f"### Veredicto del Chapter\n{_ctx(_state.get('chapter_out', ''), 400)}\n\n"
-                + (f"Closes #{_ISSUE}\n\n" if _ISSUE else "")
-                + f"---\n_Generado automáticamente por s4_guardrails pipeline_"
-            )
-            try:
-                pr_url = _gh_create_pr(pr_title, pr_body, _head, _base)
-                _ev = Path(__file__).parent / "evidence"
-                _ev.mkdir(exist_ok=True)
-                (_ev / "pr_url.txt").write_text(pr_url, encoding="utf-8")  # Gate G2: Git y PR
-                print(f"\n✅ PR creado: {pr_url}")
-                clear_checkpoint()
-            except RuntimeError as e:
-                print(f"\n⚠️  Error al crear PR: {e}")
-                save_checkpoint(_state, "pr")
-                print("  El checkpoint fue guardado. Corrige el error y vuelve a ejecutar.")
-                sys.exit(1)
+    # Modo validador: no se commitea, no se hace push ni PR.
+    clear_checkpoint()
 
     print("\n" + "=" * 60)
     print("✅ Pipeline completado.")

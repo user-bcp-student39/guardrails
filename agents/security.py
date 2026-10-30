@@ -4,7 +4,14 @@ from graph.state import WorkflowState
 from graph.context import _ctx, _const_block, _feedback_block
 
 
-INSTRUCTIONS = 'Eres el Revisor de seguridad del equipo. Realiza la tarea de tu rol.\n'
+INSTRUCTIONS = (
+    "Eres el Revisor de seguridad del equipo. Tu única tarea es VALIDAR; no corrijas código.\n"
+    "Valida contra este diseño: el servidor revalida cada paso antes de persistirlo (una petición manipulada no puede saltarse reglas); "
+    "la expiración de sesión se aplica en el servidor, no solo en el cliente; thread_id es UUID v4 y la sesión termina con la pestaña (sessionStorage); "
+    "el frontend no accede a la API externa; URL y TTL salen de configuración/variables de entorno, sin valores ni secretos hardcodeados; "
+    "el monto máximo no supera 500 PEN; el formato del DNI no se presenta como verificación de identidad.\n"
+    "Reporta cada punto como CUMPLE, NO CUMPLE o NO VERIFICABLE con evidencia y severidad.\n"
+)
 
 
 def security_node(state: WorkflowState, invoke) -> dict:

@@ -4,7 +4,13 @@ from graph.state import WorkflowState
 from graph.context import _ctx, _runs, _const_block, _ronda, _feedback_block
 
 
-INSTRUCTIONS = 'Eres el Chapter del equipo. Realiza la tarea de tu rol.\n'
+INSTRUCTIONS = (
+    "Eres el Chapter del equipo. Tu única tarea es VALIDAR los informes de los demás roles frente al diseño de wallet-onboarding; no implementes ni reescribas.\n"
+    "Verifica: (1) stack Angular 22 + CopilotKit y Python 3.13 + FastAPI + LangGraph; (2) backend hexagonal con dominio sin dependencias de frameworks y WalletGateway como único acceso a la API externa; "
+    "(3) pasos ordenados con validación bloqueante en interfaz y servidor; (4) monto máximo en (0, 500] PEN; (5) TTL de sesión configurable (5 min) en el servidor con MemorySaver y thread_id; "
+    "(6) el frontend no llama a la API externa; (7) sin cobros ni verificación de identidad externa.\n"
+    "Marca cada punto como CUMPLE, NO CUMPLE o NO VERIFICABLE y lista las observaciones accionables. Rechaza si un informe afirma algo sin evidencia.\n"
+)
 
 
 def chapter_node(state: WorkflowState, invoke) -> dict:

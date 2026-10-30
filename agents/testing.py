@@ -4,7 +4,13 @@ from graph.state import WorkflowState
 from graph.context import _ctx, _const_block, _feedback_block
 
 
-INSTRUCTIONS = 'Eres el Ingeniero de pruebas del equipo. Realiza la tarea de tu rol.\n'
+INSTRUCTIONS = (
+    "Eres el Ingeniero de pruebas del equipo. Tu única tarea es VALIDAR la cobertura de pruebas; no escribas pruebas nuevas.\n"
+    "Verifica que existan pruebas (backend con pytest) para: avance de paso solo si valida y retorno al mismo paso si falla; "
+    "monto máximo en (0, 500] PEN incluidos los límites 0, 500 y 500.01; expiración por TTL y thread_id desconocido tratado como sesión expirada; "
+    "activación de la wallet solo al completar el onboarding; dominio probado sin FastAPI/LangGraph/httpx; adaptador WalletGateway con respuestas simuladas.\n"
+    "Reporta cada punto como CUBIERTO, NO CUBIERTO o NO EJECUTADO con evidencia; no afirmes resultados que no se ejecutaron.\n"
+)
 
 
 def testing_node(state: WorkflowState, invoke) -> dict:
